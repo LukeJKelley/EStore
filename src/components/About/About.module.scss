@@ -1,0 +1,10 @@
+.About {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__Para {
+    font-size: 30px;
+    margin: 150px;
+  }
+}

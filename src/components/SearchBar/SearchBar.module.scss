@@ -1,0 +1,15 @@
+.Search {
+  font-size: 15px;
+  &__Input {
+    border-radius: 12px;
+    height: 30px;
+    width: 250px;
+    margin: 20px;
+  }
+  &__Button {
+    border-radius: 12px;
+    &:hover {
+      background-color: darkgrey;
+    }
+  }
+}

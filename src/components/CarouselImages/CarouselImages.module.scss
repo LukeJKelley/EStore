@@ -1,0 +1,10 @@
+.Carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  &__Img {
+    height: 600px;
+    width: 60vw;
+  }
+}
