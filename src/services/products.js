@@ -1,19 +1,26 @@
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "./firebase.js";
 
 // CREATE
 export const addProduct = async (productsData) => {
   // Cleaning up the data before sending it to the DB
-  const { title, price, image } = productsData;
+  const { title, price, image, description, count } = productsData;
 
   // We can add extra field after grabbing the movieData from the form
 
-  const newProduct = { title, price, description, image, count };
+  // const newProduct = { title, price, description, image, count, favourite };
 
   try {
     // Accessing The collection Reference
     const collectionRef = collection(db, "products");
-    const newDoc = await addDoc(collectionRef, newProduct);
+    const newDoc = await addDoc(collectionRef, productsData);
     console.log("Document written with ID: ", newDoc.id);
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -35,21 +42,33 @@ export const getProducts = async () => {
   });
   return data;
 };
+//get products by Id
+export const getProductsById = async (id) => {
+  const docRef = doc(db, "products", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error("Doc not found");
+  }
+
+  return { id: docSnap.id, ...docSnap.data() };
+};
 
 // Update
-// Update the data for an existing document
-// var docRef = db.collection("collection_name").doc("document_id");
-// docRef
-//   .set({
-//     field1: "new_value1",
-//     field2: "new_value2",
-//     // Add additional fields as needed
-//   })
-//   .then(function () {
-//     console.log("Document successfully updated!");
-//   })
-//   .catch(function (error) {
-//     console.error("Error updating document: ", error);
+// Update the data for an existing
+// export const updateProduct = async (id) => {
+//   const { title, price, image, description } = id;
+
+//   const docRef = doc(db, "products", id);
+
+//   await updateDoc(docRef, {
+//     title,
+//     price,
+//     image,
+//     description,
+//     count,
 //   });
+// };
+// };
 
 // Delete

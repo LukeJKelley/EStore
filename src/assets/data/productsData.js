@@ -265,4 +265,17 @@ export const products = [
       count: 145,
     },
   },
+  {
+    id: 21,
+    title: "Womens one size-fits-al t-Shirt",
+    price: 12.99,
+    description:
+      "One size-fits all Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+    category: "women's clothing",
+    image: "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+    rating: {
+      rate: 3.6,
+      count: 145,
+    },
+  },
 ];
