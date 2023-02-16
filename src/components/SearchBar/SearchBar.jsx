@@ -3,30 +3,43 @@ import styles from "./SearchBar.module.scss";
 import { FilterContext } from "../../Context/Context";
 
 const SearchBar = () => {
-  const { filteredProducts, setFilteredProducts } = useContext(FilterContext);
+  const { allProducts, setAllProducts, defaultProducts } =
+    useContext(FilterContext);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    const filtered = products.filter((product) =>
+    const filtered = allProducts.filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredProducts(filtered);
+    setAllProducts(filtered);
   };
 
+  const handleClick = () => {
+    setAllProducts(defaultProducts);
+    console.log(defaultProducts);
+  };
+
+  console.log(allProducts, "This is all products");
+
   return (
-    <form className={styles.Search} onSubmit={handleSearch}>
-      <input
-        type="text"
-        className={styles.Search__Input}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button type="submit" className={styles.Search__Button}>
-        Search
+    <>
+      <form className={styles.Search} onSubmit={handleSearch}>
+        <input
+          type="text"
+          className={styles.Search__Input}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit" className={styles.Search__Button}>
+          Search
+        </button>
+      </form>
+      <button className={styles.Search__Button} onClick={handleClick}>
+        Reset Search
       </button>
-    </form>
+    </>
   );
 };
 
