@@ -9,7 +9,7 @@ import Footer from "./components/Footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { populateDatabase } from "./assets/data/populateDatabase";
-import { FilterContext } from "./Context/Context";
+import FilterProvider from "./Context/Context";
 
 function App() {
   populateDatabase();
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <FilterContext.Provider value={{ filteredProducts, setFilteredProducts }}>
+      <FilterProvider value={{ filteredProducts, setFilteredProducts }}>
         <BrowserRouter>
           <Navigation />
           <Routes>
@@ -28,7 +28,7 @@ function App() {
             <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </BrowserRouter>
-      </FilterContext.Provider>
+      </FilterProvider>
       <Footer />
     </>
   );
